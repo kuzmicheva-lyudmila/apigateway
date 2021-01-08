@@ -1,6 +1,5 @@
 package ru.kl.users.api;
 
-import com.fasterxml.jackson.databind.node.TextNode;
 import lombok.RequiredArgsConstructor;
 import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -46,9 +45,8 @@ public class UsersController {
     @PutMapping
     public Mono<User> insert(
             @RequestHeader(value = AUTH_ROLES_HEADER) String authRoles,
-            @RequestBody TextNode clientTextNode
+            @RequestBody String client
     ) {
-        String client = clientTextNode != null ? clientTextNode.asText() : null;
         Assert.hasText(client, "The given client must not be empty");
         checkAuthorization(INSERT_REQUEST, authRoles, null, null);
         return userRepository.insert(new User(client, null));

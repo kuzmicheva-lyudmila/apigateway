@@ -15,7 +15,8 @@ public class AuthorizationVerifying {
         if (roles.contains(Role.ADMIN.name())) {
             return;
         }
-        if (!INSERT_REQUEST.equals(request) && roles.contains(Role.USER.name()) && actualClient.equals(expectedClient)) {
+        if (!INSERT_REQUEST.equals(request) && roles.contains(Role.USER.name())
+                && actualClient.equals(expectedClient)) {
             return;
         }
 
